@@ -103,6 +103,14 @@
             font-weight: 600;
         }
 
+        .main-currency {
+            font-weight: 500;
+            font-size: 13px;
+            letter-spacing: 0.02em; /* Added letter spacing */
+            display: block;
+            text-align: center;
+        }
+
         .full-name {
             font-weight: 400;
             opacity: 0.5;
@@ -183,6 +191,7 @@
 <div class="converter-card">
     <header>
         <h1>Currency Converter</h1>
+        <p class="main-currency">1 PLN</p>
         <div class="top-rates-grid" id="rates-grid"></div>
         <div class="update-time" id="last-update">Loading data...</div>
     </header>
