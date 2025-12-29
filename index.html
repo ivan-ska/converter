@@ -64,7 +64,6 @@
             flex-direction: column;
         }
 
-        /* --- SECTION 1: HEADER + TOP CONS + RATES --- */
         .top-group {
             display: flex;
             flex-direction: column;
@@ -206,7 +205,7 @@
         .input-part {
             display: flex;
             align-items: center;
-            gap: 8px;
+            gap: 12px;
             flex-grow: 1;
             justify-content: flex-end;
         }
@@ -229,13 +228,8 @@
             opacity: 0.4;
         }
 
-        /* CONTROLS */
-        .controls {
-            display: flex;
-            align-items: center;
-        }
-
-        .btn {
+        /* RESET BUTTON */
+        .btn-reset {
             width: 30px;
             height: 30px;
             padding: 8px;
@@ -249,25 +243,13 @@
             transition: background 0.1s;
         }
 
-        .btn:active {
+        .btn-reset:active {
             background-image: linear-gradient(rgba(255, 255, 255, 0.6), rgba(255, 255, 255, 0.6));
         }
 
-        .btn img {
+        .btn-reset img {
             width: 14px;
             height: 14px;
-        }
-
-        .con-btn-hor {
-            width: 4px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-
-        .con-btn-hor img {
-            width: 100%;
-            height: auto;
         }
 
         .connector-row-wrapper {
@@ -338,15 +320,8 @@
                 <div class="input-part">
                     <input type="text" id="PLN" placeholder="0" inputmode="decimal" oninput="validateAndCalc(this)"
                         class="is-zero">
-                    <div class="controls" onclick="event.stopPropagation()">
-                        <button class="btn" onclick="step('PLN', -1)"><img
-                                src="https://raw.githubusercontent.com/ivan-ska/converter/b0ee605df62d1f17e6849df26764c3cecb04d1b1/files/icons/ic-minus.svg"></button>
-                        <div class="con-btn-hor"><img
-                                src="https://raw.githubusercontent.com/ivan-ska/converter/b0ee605df62d1f17e6849df26764c3cecb04d1b1/files/cons/con-hor-min.svg">
-                        </div>
-                        <button class="btn" onclick="step('PLN', 1)"><img
-                                src="https://raw.githubusercontent.com/ivan-ska/converter/b0ee605df62d1f17e6849df26764c3cecb04d1b1/files/icons/ic-plus.svg"></button>
-                    </div>
+                    <button class="btn-reset" onclick="resetValues(event)"><img
+                            src="https://raw.githubusercontent.com/ivan-ska/converter/82d1ada1c5805782c21a6419c05e7610b9aaf653/files/icons/ic-cross.svg"></button>
                 </div>
             </div>
             <div class="connector-row-wrapper"><img
@@ -360,15 +335,8 @@
                 <div class="input-part">
                     <input type="text" id="USD" placeholder="0" inputmode="decimal" oninput="validateAndCalc(this)"
                         class="is-zero">
-                    <div class="controls" onclick="event.stopPropagation()">
-                        <button class="btn" onclick="step('USD', -1)"><img
-                                src="https://raw.githubusercontent.com/ivan-ska/converter/b0ee605df62d1f17e6849df26764c3cecb04d1b1/files/icons/ic-minus.svg"></button>
-                        <div class="con-btn-hor"><img
-                                src="https://raw.githubusercontent.com/ivan-ska/converter/b0ee605df62d1f17e6849df26764c3cecb04d1b1/files/cons/con-hor-min.svg">
-                        </div>
-                        <button class="btn" onclick="step('USD', 1)"><img
-                                src="https://raw.githubusercontent.com/ivan-ska/converter/b0ee605df62d1f17e6849df26764c3cecb04d1b1/files/icons/ic-plus.svg"></button>
-                    </div>
+                    <button class="btn-reset" onclick="resetValues(event)"><img
+                            src="https://raw.githubusercontent.com/ivan-ska/converter/82d1ada1c5805782c21a6419c05e7610b9aaf653/files/icons/ic-cross.svg"></button>
                 </div>
             </div>
             <div class="connector-row-wrapper"><img
@@ -382,15 +350,8 @@
                 <div class="input-part">
                     <input type="text" id="EUR" placeholder="0" inputmode="decimal" oninput="validateAndCalc(this)"
                         class="is-zero">
-                    <div class="controls" onclick="event.stopPropagation()">
-                        <button class="btn" onclick="step('EUR', -1)"><img
-                                src="https://raw.githubusercontent.com/ivan-ska/converter/b0ee605df62d1f17e6849df26764c3cecb04d1b1/files/icons/ic-minus.svg"></button>
-                        <div class="con-btn-hor"><img
-                                src="https://raw.githubusercontent.com/ivan-ska/converter/b0ee605df62d1f17e6849df26764c3cecb04d1b1/files/cons/con-hor-min.svg">
-                        </div>
-                        <button class="btn" onclick="step('EUR', 1)"><img
-                                src="https://raw.githubusercontent.com/ivan-ska/converter/b0ee605df62d1f17e6849df26764c3cecb04d1b1/files/icons/ic-plus.svg"></button>
-                    </div>
+                    <button class="btn-reset" onclick="resetValues(event)"><img
+                            src="https://raw.githubusercontent.com/ivan-ska/converter/82d1ada1c5805782c21a6419c05e7610b9aaf653/files/icons/ic-cross.svg"></button>
                 </div>
             </div>
             <div class="connector-row-wrapper"><img
@@ -404,15 +365,8 @@
                 <div class="input-part">
                     <input type="text" id="BYN" placeholder="0" inputmode="decimal" oninput="validateAndCalc(this)"
                         class="is-zero">
-                    <div class="controls" onclick="event.stopPropagation()">
-                        <button class="btn" onclick="step('BYN', -1)"><img
-                                src="https://raw.githubusercontent.com/ivan-ska/converter/b0ee605df62d1f17e6849df26764c3cecb04d1b1/files/icons/ic-minus.svg"></button>
-                        <div class="con-btn-hor"><img
-                                src="https://raw.githubusercontent.com/ivan-ska/converter/b0ee605df62d1f17e6849df26764c3cecb04d1b1/files/cons/con-hor-min.svg">
-                        </div>
-                        <button class="btn" onclick="step('BYN', 1)"><img
-                                src="https://raw.githubusercontent.com/ivan-ska/converter/b0ee605df62d1f17e6849df26764c3cecb04d1b1/files/icons/ic-plus.svg"></button>
-                    </div>
+                    <button class="btn-reset" onclick="resetValues(event)"><img
+                            src="https://raw.githubusercontent.com/ivan-ska/converter/82d1ada1c5805782c21a6419c05e7610b9aaf653/files/icons/ic-cross.svg"></button>
                 </div>
             </div>
         </div>
@@ -442,23 +396,20 @@
         function validateAndCalc(el) {
             let val = el.value.replace(',', '.');
             val = val.replace(/[^0-9.]/g, '');
-
             if ((val.match(/\./g) || []).length > 1) {
                 val = val.substr(0, val.lastIndexOf('.'));
             }
-
             el.value = val;
             updateOpacity();
             calculate(el.id, val);
         }
 
-        function step(id, delta) {
-            const el = document.getElementById(id);
-            let currentVal = parseFloat(el.value) || 0;
-            let newVal = currentVal + delta;
-            el.value = newVal > 0 ? newVal : '';
+        function resetValues(event) {
+            event.stopPropagation();
+            ids.forEach(id => {
+                document.getElementById(id).value = '';
+            });
             updateOpacity();
-            calculate(id, el.value);
         }
 
         function updateOpacity() {
@@ -488,7 +439,6 @@
             updateOpacity();
         }
     </script>
-
 </body>
 
 </html>
