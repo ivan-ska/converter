@@ -1,303 +1,477 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Currency Converter</title>
+    <title>Currency</title>
+
+    <link rel="icon" type="image/svg+xml"
+        href="https://raw.githubusercontent.com/ivan-ska/converter/b0ee605df62d1f17e6849df26764c3cecb04d1b1/files/favicon.svg">
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600&display=swap" rel="stylesheet">
-    
+    <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400&family=Doto:wght@500;600&display=swap"
+        rel="stylesheet">
+
     <style>
         :root {
-            --bg-color: #F7F7F5;
-            --card-bg: #FFFFFF;
-            --text-main: #37352F;
-            --text-secondary: #9B9A97;
-            --accent-color: #2eaadc;
-            --input-bg: #F2F3F5;
+            --bg-page: #FFFFFF;
+            --bg-element: #F0F0F0;
+            --border-color: #F0F0F0;
+            --btn-color: #F0F0F0;
+        }
+
+        * {
+            box-sizing: border-box;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
         }
 
         body {
-            font-family: 'Inter Tight', sans-serif;
-            background-color: var(--bg-color);
-            color: var(--text-main);
+            font-family: 'Doto', sans-serif;
+            background-color: var(--bg-page);
+            margin: 0;
             display: flex;
             justify-content: center;
             align-items: center;
             min-height: 100vh;
-            margin: 0;
             padding: 20px;
         }
 
         .converter-card {
-            background: var(--card-bg);
             width: 100%;
-            max-width: 440px;
-            padding: 32px;
-            border-radius: 24px;
-            box-shadow: 0 8px 30px rgba(0,0,0,0.04);
-        }
-
-        /* Header and Grid Section */
-        header h1 {
-            font-size: 22px;
-            font-weight: 600;
-            margin: 0 0 20px 0;
-            text-align: center;
-            letter-spacing: -0.01em;
-        }
-
-        .top-rates-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 12px;
-            margin-bottom: 24px;
-        }
-
-        .rate-card {
-            background: var(--input-bg);
-            padding: 12px 4px;
-            border-radius: 12px;
-            text-align: center;
-            border: 1px solid rgba(0,0,0,0.02);
-        }
-
-        .rate-card-title {
-            font-size: 11px;
-            font-weight: 600;
-            color: var(--text-secondary);
-            margin-bottom: 4px;
+            min-width: 280px;
+            max-width: 510px;
             display: flex;
-            justify-content: center;
+            flex-direction: column;
+        }
+
+        /* --- SECTION 1: HEADER + TOP CONS + RATES --- */
+        .top-group {
+            display: flex;
+            flex-direction: column;
+            margin-bottom: 40px;
+        }
+
+        .header-block {
+            background: var(--bg-element);
+            padding: 20px 12px;
+            border-radius: 6px;
+            display: flex;
+            justify-content: space-between;
             align-items: center;
-            gap: 4px;
-            letter-spacing: 0.03em; /* Added letter spacing */
+            border: 2px solid var(--bg-element);
+        }
+
+        .header-block h1 {
+            font-size: 22px;
+            margin: 0;
+            font-weight: 600;
             text-transform: uppercase;
         }
 
-        .rate-card-value {
-            font-size: 17px;
-            font-weight: 600;
-            color: var(--text-main);
-        }
-
-        .update-time {
-            font-size: 11px;
-            color: var(--text-secondary);
-            text-align: center;
-            margin-bottom: 28px;
-            letter-spacing: 0.02em;
-        }
-
-        /* Currency Input Rows */
-        .currency-row {
-            margin-bottom: 18px;
-        }
-
-        .label-row {
-            display: flex;
-            align-items: baseline;
-            margin-bottom: 8px;
+        .date-text {
             font-size: 14px;
-            font-weight: 600;
         }
 
-        .main-currency {
-            font-weight: 500;
-            font-size: 13px;
-            letter-spacing: 0.02em; /* Added letter spacing */
-            display: block;
-            text-align: center;
+        .ver-connectors-row {
+            display: flex;
+            gap: 6px;
         }
 
-        .full-name {
-            font-weight: 400;
-            opacity: 0.5;
-            margin-left: 6px;
-            font-size: 13px;
-            letter-spacing: 0.02em; /* Added letter spacing */
+        .ver-con-wrapper {
+            flex: 1;
+            display: flex;
+            justify-content: center;
         }
 
-        .flag { margin-right: 6px; font-size: 16px; }
+        .ver-con-wrapper img {
+            height: 6px;
+            width: auto;
+        }
 
-        .input-container {
+        .rates-row {
+            display: flex;
+            align-items: stretch;
+        }
+
+        .rate-card {
+            background: var(--bg-element);
+            flex: 1;
+            padding: 16px 12px;
+            border-radius: 6px;
+            border: 2px solid var(--bg-element);
+            display: flex;
+            flex-direction: column;
+        }
+
+        .rate-card-header {
             display: flex;
             align-items: center;
-            background-color: var(--input-bg);
-            border-radius: 12px;
-            padding: 4px;
-            transition: all 0.2s ease;
-            border: 1px solid transparent;
+            gap: 4px;
+            font-size: 14px;
+            margin-bottom: 12px;
+            line-height: 1;
         }
 
-        .input-container:focus-within {
-            background-color: #fff;
-            border-color: var(--accent-color);
-            box-shadow: 0 0 0 3px rgba(46, 170, 220, 0.12);
+        img.flag-round {
+            border-radius: 50%;
         }
 
-        /* Strict arrow removal for all browsers */
-        input[type=number] {
+        .rate-card-header img {
+            width: 14px;
+            height: 14px;
+            border: 1px solid var(--border-color);
+        }
+
+        .rate-card-value {
+            font-family: 'DM Mono', monospace;
+            font-size: 22px;
+            letter-spacing: -0.03em;
+            line-height: 1;
+        }
+
+        .hor-con-wrapper {
+            width: 6px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .hor-con-wrapper img {
+            width: 6px;
+            height: auto;
+        }
+
+        /* --- SECTION 2: INPUTS --- */
+        .main-group {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .currency-row {
+            background: var(--bg-element);
+            border-radius: 6px;
+            padding: 20px 12px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            transition: background 0.2s;
+            border: 2px solid var(--bg-element);
+            cursor: text;
+        }
+
+        .currency-row:focus-within {
+            background: #FFFFFF;
+            border-color: var(--border-color);
+        }
+
+        .label-part {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            min-width: 80px;
+        }
+
+        .label-part img {
+            width: 20px;
+            height: 20px;
+            border: 1px solid var(--border-color);
+        }
+
+        .currency-code {
+            font-size: 22px;
+            font-weight: 600;
+            letter-spacing: -0.02em;
+        }
+
+        .input-part {
+            display: flex;
+            align-items: center;
+            gap: 8px;
             flex-grow: 1;
+            justify-content: flex-end;
+        }
+
+        input[type=text] {
             background: transparent;
             border: none;
-            padding: 10px 14px;
-            font-size: 19px;
-            font-family: 'Inter Tight', sans-serif;
-            font-weight: 500;
-            color: var(--text-main);
             outline: none;
+            font-family: 'DM Mono', monospace;
+            font-size: 22px;
+            letter-spacing: -0.03em;
+            text-align: right;
             width: 100%;
-            -moz-appearance: textfield; /* Firefox */
+            padding: 0;
+            color: #000000;
         }
 
-        input[type=number]::-webkit-inner-spin-button, 
-        input[type=number]::-webkit-outer-spin-button { 
-            -webkit-appearance: none; /* Chrome, Safari, Edge */
-            margin: 0; 
+        input::placeholder,
+        input.is-zero {
+            opacity: 0.4;
         }
 
-        /* Control Buttons */
-        .controls { display: flex; gap: 4px; padding-right: 4px; }
+        /* CONTROLS */
+        .controls {
+            display: flex;
+            align-items: center;
+        }
 
         .btn {
-            width: 32px;
-            height: 32px;
+            width: 30px;
+            height: 30px;
+            padding: 8px;
             border: none;
-            border-radius: 8px;
-            background-color: #fff;
-            color: var(--text-main);
-            font-size: 18px;
+            border-radius: 4px;
+            background: var(--btn-color);
             cursor: pointer;
             display: flex;
             justify-content: center;
             align-items: center;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
-            transition: transform 0.1s;
+            transition: background 0.1s;
         }
 
-        .btn:active { transform: scale(0.92); }
+        .btn:active {
+            background-image: linear-gradient(rgba(255, 255, 255, 0.6), rgba(255, 255, 255, 0.6));
+        }
 
-        /* Mobile Viewports */
-       /* @media (max-width: 440px) {
-            .top-rates-grid { grid-template-columns: 1fr; }
-            .converter-card { padding: 24px 20px; }
-        } */
+        .btn img {
+            width: 14px;
+            height: 14px;
+        }
+
+        .con-btn-hor {
+            width: 4px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .con-btn-hor img {
+            width: 100%;
+            height: auto;
+        }
+
+        .connector-row-wrapper {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .connector-row-wrapper img {
+            width: 12px;
+            height: auto;
+        }
     </style>
 </head>
+
 <body>
 
-<div class="converter-card">
-    <header>
-        <h1>Currency Converter</h1>
-        <p class="main-currency">1 PLN</p>
-        <div class="top-rates-grid" id="rates-grid"></div>
-        <div class="update-time" id="last-update">Loading data...</div>
-    </header>
+    <div class="converter-card">
+        <div class="top-group">
+            <div class="header-block">
+                <h1>Currency</h1>
+                <div class="date-text" id="current-date">...</div>
+            </div>
+            <div class="ver-connectors-row">
+                <div class="ver-con-wrapper"><img
+                        src="https://raw.githubusercontent.com/ivan-ska/converter/b0ee605df62d1f17e6849df26764c3cecb04d1b1/files/cons/con-ver.svg">
+                </div>
+                <div class="ver-con-wrapper"><img
+                        src="https://raw.githubusercontent.com/ivan-ska/converter/b0ee605df62d1f17e6849df26764c3cecb04d1b1/files/cons/con-ver.svg">
+                </div>
+                <div class="ver-con-wrapper"><img
+                        src="https://raw.githubusercontent.com/ivan-ska/converter/b0ee605df62d1f17e6849df26764c3cecb04d1b1/files/cons/con-ver.svg">
+                </div>
+            </div>
+            <div class="rates-row">
+                <div class="rate-card">
+                    <div class="rate-card-header"><img
+                            src="https://raw.githubusercontent.com/ivan-ska/converter/b0ee605df62d1f17e6849df26764c3cecb04d1b1/files/flags/fl-us.png"
+                            class="flag-round"> <span>USD</span></div>
+                    <div class="rate-card-value" id="rate-usd">...</div>
+                </div>
+                <div class="hor-con-wrapper"><img
+                        src="https://raw.githubusercontent.com/ivan-ska/converter/b0ee605df62d1f17e6849df26764c3cecb04d1b1/files/cons/con-hor.svg">
+                </div>
+                <div class="rate-card">
+                    <div class="rate-card-header"><img
+                            src="https://raw.githubusercontent.com/ivan-ska/converter/b0ee605df62d1f17e6849df26764c3cecb04d1b1/files/flags/fl-eu.png"
+                            class="flag-round"> <span>EUR</span></div>
+                    <div class="rate-card-value" id="rate-eur">...</div>
+                </div>
+                <div class="hor-con-wrapper"><img
+                        src="https://raw.githubusercontent.com/ivan-ska/converter/b0ee605df62d1f17e6849df26764c3cecb04d1b1/files/cons/con-hor.svg">
+                </div>
+                <div class="rate-card">
+                    <div class="rate-card-header"><img
+                            src="https://raw.githubusercontent.com/ivan-ska/converter/b0ee605df62d1f17e6849df26764c3cecb04d1b1/files/flags/fl-by.png"
+                            class="flag-round"> <span>BYN</span></div>
+                    <div class="rate-card-value" id="rate-byn">...</div>
+                </div>
+            </div>
+        </div>
 
-    <div class="currency-row">
-        <div class="label-row"><span class="flag">🇵🇱</span>PLN <span class="full-name">Polish Zloty</span></div>
-        <div class="input-container">
-            <input type="number" id="PLN" placeholder="0" oninput="manualInput('PLN')">
-            <div class="controls">
-                <button class="btn" onclick="changeValue('PLN', -1)">−</button>
-                <button class="btn" onclick="changeValue('PLN', 1)">+</button>
+        <div class="main-group">
+            <div class="currency-row" onclick="focusInput('PLN')">
+                <div class="label-part"><img
+                        src="https://raw.githubusercontent.com/ivan-ska/converter/b0ee605df62d1f17e6849df26764c3cecb04d1b1/files/flags/fl-pl.png"
+                        class="flag-round"><span class="currency-code">PLN</span></div>
+                <div class="input-part">
+                    <input type="text" id="PLN" placeholder="0" inputmode="decimal" oninput="validateAndCalc(this)"
+                        class="is-zero">
+                    <div class="controls" onclick="event.stopPropagation()">
+                        <button class="btn" onclick="step('PLN', -1)"><img
+                                src="https://raw.githubusercontent.com/ivan-ska/converter/b0ee605df62d1f17e6849df26764c3cecb04d1b1/files/icons/ic-minus.svg"></button>
+                        <div class="con-btn-hor"><img
+                                src="https://raw.githubusercontent.com/ivan-ska/converter/b0ee605df62d1f17e6849df26764c3cecb04d1b1/files/cons/con-hor-min.svg">
+                        </div>
+                        <button class="btn" onclick="step('PLN', 1)"><img
+                                src="https://raw.githubusercontent.com/ivan-ska/converter/b0ee605df62d1f17e6849df26764c3cecb04d1b1/files/icons/ic-plus.svg"></button>
+                    </div>
+                </div>
+            </div>
+            <div class="connector-row-wrapper"><img
+                    src="https://raw.githubusercontent.com/ivan-ska/converter/b0ee605df62d1f17e6849df26764c3cecb04d1b1/files/cons/con-ver.svg">
+            </div>
+
+            <div class="currency-row" onclick="focusInput('USD')">
+                <div class="label-part"><img
+                        src="https://raw.githubusercontent.com/ivan-ska/converter/b0ee605df62d1f17e6849df26764c3cecb04d1b1/files/flags/fl-us.png"
+                        class="flag-round"><span class="currency-code">USD</span></div>
+                <div class="input-part">
+                    <input type="text" id="USD" placeholder="0" inputmode="decimal" oninput="validateAndCalc(this)"
+                        class="is-zero">
+                    <div class="controls" onclick="event.stopPropagation()">
+                        <button class="btn" onclick="step('USD', -1)"><img
+                                src="https://raw.githubusercontent.com/ivan-ska/converter/b0ee605df62d1f17e6849df26764c3cecb04d1b1/files/icons/ic-minus.svg"></button>
+                        <div class="con-btn-hor"><img
+                                src="https://raw.githubusercontent.com/ivan-ska/converter/b0ee605df62d1f17e6849df26764c3cecb04d1b1/files/cons/con-hor-min.svg">
+                        </div>
+                        <button class="btn" onclick="step('USD', 1)"><img
+                                src="https://raw.githubusercontent.com/ivan-ska/converter/b0ee605df62d1f17e6849df26764c3cecb04d1b1/files/icons/ic-plus.svg"></button>
+                    </div>
+                </div>
+            </div>
+            <div class="connector-row-wrapper"><img
+                    src="https://raw.githubusercontent.com/ivan-ska/converter/b0ee605df62d1f17e6849df26764c3cecb04d1b1/files/cons/con-ver.svg">
+            </div>
+
+            <div class="currency-row" onclick="focusInput('EUR')">
+                <div class="label-part"><img
+                        src="https://raw.githubusercontent.com/ivan-ska/converter/b0ee605df62d1f17e6849df26764c3cecb04d1b1/files/flags/fl-eu.png"
+                        class="flag-round"><span class="currency-code">EUR</span></div>
+                <div class="input-part">
+                    <input type="text" id="EUR" placeholder="0" inputmode="decimal" oninput="validateAndCalc(this)"
+                        class="is-zero">
+                    <div class="controls" onclick="event.stopPropagation()">
+                        <button class="btn" onclick="step('EUR', -1)"><img
+                                src="https://raw.githubusercontent.com/ivan-ska/converter/b0ee605df62d1f17e6849df26764c3cecb04d1b1/files/icons/ic-minus.svg"></button>
+                        <div class="con-btn-hor"><img
+                                src="https://raw.githubusercontent.com/ivan-ska/converter/b0ee605df62d1f17e6849df26764c3cecb04d1b1/files/cons/con-hor-min.svg">
+                        </div>
+                        <button class="btn" onclick="step('EUR', 1)"><img
+                                src="https://raw.githubusercontent.com/ivan-ska/converter/b0ee605df62d1f17e6849df26764c3cecb04d1b1/files/icons/ic-plus.svg"></button>
+                    </div>
+                </div>
+            </div>
+            <div class="connector-row-wrapper"><img
+                    src="https://raw.githubusercontent.com/ivan-ska/converter/b0ee605df62d1f17e6849df26764c3cecb04d1b1/files/cons/con-ver.svg">
+            </div>
+
+            <div class="currency-row" onclick="focusInput('BYN')">
+                <div class="label-part"><img
+                        src="https://raw.githubusercontent.com/ivan-ska/converter/b0ee605df62d1f17e6849df26764c3cecb04d1b1/files/flags/fl-by.png"
+                        class="flag-round"><span class="currency-code">BYN</span></div>
+                <div class="input-part">
+                    <input type="text" id="BYN" placeholder="0" inputmode="decimal" oninput="validateAndCalc(this)"
+                        class="is-zero">
+                    <div class="controls" onclick="event.stopPropagation()">
+                        <button class="btn" onclick="step('BYN', -1)"><img
+                                src="https://raw.githubusercontent.com/ivan-ska/converter/b0ee605df62d1f17e6849df26764c3cecb04d1b1/files/icons/ic-minus.svg"></button>
+                        <div class="con-btn-hor"><img
+                                src="https://raw.githubusercontent.com/ivan-ska/converter/b0ee605df62d1f17e6849df26764c3cecb04d1b1/files/cons/con-hor-min.svg">
+                        </div>
+                        <button class="btn" onclick="step('BYN', 1)"><img
+                                src="https://raw.githubusercontent.com/ivan-ska/converter/b0ee605df62d1f17e6849df26764c3cecb04d1b1/files/icons/ic-plus.svg"></button>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
 
-    <div class="currency-row">
-        <div class="label-row"><span class="flag">🇺🇸</span>USD <span class="full-name">US Dollar</span></div>
-        <div class="input-container">
-            <input type="number" id="USD" placeholder="0" oninput="manualInput('USD')">
-            <div class="controls">
-                <button class="btn" onclick="changeValue('USD', -1)">−</button>
-                <button class="btn" onclick="changeValue('USD', 1)">+</button>
-            </div>
-        </div>
-    </div>
+    <script>
+        const rates = {};
+        const ids = ['PLN', 'USD', 'EUR', 'BYN'];
 
-    <div class="currency-row">
-        <div class="label-row"><span class="flag">🇪🇺</span>EUR <span class="full-name">Euro</span></div>
-        <div class="input-container">
-            <input type="number" id="EUR" placeholder="0" oninput="manualInput('EUR')">
-            <div class="controls">
-                <button class="btn" onclick="changeValue('EUR', -1)">−</button>
-                <button class="btn" onclick="changeValue('EUR', 1)">+</button>
-            </div>
-        </div>
-    </div>
+        fetch('https://open.er-api.com/v6/latest/PLN')
+            .then(r => r.json())
+            .then(data => {
+                rates.PLN = 1;
+                rates.USD = data.rates.USD;
+                rates.EUR = data.rates.EUR;
+                rates.BYN = data.rates.BYN;
+                document.getElementById('rate-usd').innerText = (1 / rates.USD).toFixed(2);
+                document.getElementById('rate-eur').innerText = (1 / rates.EUR).toFixed(2);
+                document.getElementById('rate-byn').innerText = (1 / rates.BYN).toFixed(2);
+                const d = new Date();
+                const months = ["JAN", "FEB", "MAR", "APR", "MAY", "JUN", "JUL", "AUG", "SEP", "OCT", "NOV", "DEC"];
+                document.getElementById('current-date').innerText = `${d.getDate()} ${months[d.getMonth()]} ${d.getFullYear()}`;
+            });
 
-    <div class="currency-row">
-        <div class="label-row"><span class="flag">🇧🇾</span>BYN <span class="full-name">Belarusian Ruble</span></div>
-        <div class="input-container">
-            <input type="number" id="BYN" placeholder="0" oninput="manualInput('BYN')">
-            <div class="controls">
-                <button class="btn" onclick="changeValue('BYN', -1)">−</button>
-                <button class="btn" onclick="changeValue('BYN', 1)">+</button>
-            </div>
-        </div>
-    </div>
-</div>
+        function focusInput(id) { document.getElementById(id).focus(); }
 
-<script>
-    const rates = {}; 
-    const currencyIds = ['PLN', 'USD', 'EUR', 'BYN'];
+        function validateAndCalc(el) {
+            let val = el.value.replace(',', '.');
+            val = val.replace(/[^0-9.]/g, '');
 
-    // Fetch exchange rates based on PLN
-    fetch('https://open.er-api.com/v6/latest/PLN')
-        .then(res => res.json())
-        .then(data => {
-            rates.PLN = 1;
-            rates.USD = data.rates.USD;
-            rates.EUR = data.rates.EUR;
-            rates.BYN = data.rates.BYN;
-
-            const usd = (1 / rates.USD).toFixed(2);
-            const eur = (1 / rates.EUR).toFixed(2);
-            const byn = (1 / rates.BYN).toFixed(2);
-
-            // Render top rate cards
-            document.getElementById('rates-grid').innerHTML = `
-                <div class="rate-card"><div class="rate-card-title">🇺🇸 USD</div><div class="rate-card-value">${usd}</div></div>
-                <div class="rate-card"><div class="rate-card-title">🇪🇺 EUR</div><div class="rate-card-value">${eur}</div></div>
-                <div class="rate-card"><div class="rate-card-title">🇧🇾 BYN</div><div class="rate-card-value">${byn}</div></div>
-            `;
-            
-            const date = new Date(data.time_last_update_utc);
-            document.getElementById('last-update').innerText = `Last update: ${date.toLocaleString('en-GB', { dateStyle: 'medium', timeStyle: 'short' })}`;
-        })
-        .catch(() => {
-            document.getElementById('last-update').innerText = "Update failed. Check connection.";
-        });
-
-    function manualInput(id) {
-        calculateAll(id, document.getElementById(id).value);
-    }
-
-    function changeValue(id, delta) {
-        const input = document.getElementById(id);
-        let newVal = (parseFloat(input.value) || 0) + delta;
-        if (newVal < 0) newVal = 0;
-        input.value = newVal;
-        calculateAll(id, newVal);
-    }
-
-    function calculateAll(sourceId, value) {
-        if (value === '') {
-            currencyIds.forEach(id => { if (id !== sourceId) document.getElementById(id).value = ''; });
-            return;
-        }
-        let amountInPLN = parseFloat(value) / rates[sourceId];
-        currencyIds.forEach(targetId => {
-            if (targetId !== sourceId) {
-                let result = amountInPLN * rates[targetId];
-                document.getElementById(targetId).value = parseFloat(result.toFixed(2));
+            if ((val.match(/\./g) || []).length > 1) {
+                val = val.substr(0, val.lastIndexOf('.'));
             }
-        });
-    }
-</script>
+
+            el.value = val;
+            updateOpacity();
+            calculate(el.id, val);
+        }
+
+        function step(id, delta) {
+            const el = document.getElementById(id);
+            let currentVal = parseFloat(el.value) || 0;
+            let newVal = currentVal + delta;
+            el.value = newVal > 0 ? newVal : '';
+            updateOpacity();
+            calculate(id, el.value);
+        }
+
+        function updateOpacity() {
+            ids.forEach(id => {
+                const el = document.getElementById(id);
+                if (el.value === '' || parseFloat(el.value) === 0) {
+                    el.classList.add('is-zero');
+                } else {
+                    el.classList.remove('is-zero');
+                }
+            });
+        }
+
+        function calculate(srcId, val) {
+            if (!val || isNaN(parseFloat(val))) {
+                ids.forEach(id => { if (id !== srcId) document.getElementById(id).value = ''; });
+                updateOpacity();
+                return;
+            }
+            const pln = parseFloat(val) / rates[srcId];
+            ids.forEach(id => {
+                if (id !== srcId) {
+                    const res = pln * rates[id];
+                    document.getElementById(id).value = Number.isInteger(res) ? res : parseFloat(res.toFixed(2));
+                }
+            });
+            updateOpacity();
+        }
+    </script>
 
 </body>
+
 </html>
