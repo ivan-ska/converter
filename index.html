@@ -3,12 +3,18 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <meta name="apple-mobile-web-app-title" content="Currency">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+
     <title>Currency</title>
 
     <link rel="icon" type="image/svg+xml"
-        href="https://raw.githubusercontent.com/ivan-ska/converter/b0ee605df62d1f17e6849df26764c3cecb04d1b1/files/favicon.svg">
+        href="https://raw.githubusercontent.com/ivan-ska/converter/f393511646d14c250f0db9ce541ad6dde1b83b32/files/favicon.svg">
 
+    <link rel="apple-touch-icon" href="https://raw.githubusercontent.com/ivan-ska/converter/f393511646d14c250f0db9ce541ad6dde1b83b32/files/icon.png">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400&family=Doto:wght@500;600&display=swap"
@@ -26,6 +32,8 @@
             box-sizing: border-box;
             -webkit-font-smoothing: antialiased;
             -moz-osx-font-smoothing: grayscale;
+            /* Убираем синее выделение при клике на мобилках */
+            -webkit-tap-highlight-color: transparent;
         }
 
         body {
@@ -34,9 +42,18 @@
             margin: 0;
             display: flex;
             justify-content: center;
-            align-items: center;
+            align-items: center; /* Центр для десктопа */
             min-height: 100vh;
+            min-height: 100dvh; /* Динамическая высота для мобилок */
             padding: 20px;
+            overflow: hidden; /* Убирает лишний скролл */
+        }
+
+        @media (max-width: 600px) {
+            body {
+                align-items: flex-start; /* На мобилке прижимаем выше */
+                padding-top: 10dvh; /* Делаем отступ сверху 10% от высоты экрана */
+            }
         }
 
         .converter-card {
