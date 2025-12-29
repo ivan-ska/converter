@@ -14,7 +14,8 @@
     <link rel="icon" type="image/svg+xml"
         href="https://raw.githubusercontent.com/ivan-ska/converter/f393511646d14c250f0db9ce541ad6dde1b83b32/files/favicon.svg">
 
-    <link rel="apple-touch-icon" href="https://raw.githubusercontent.com/ivan-ska/converter/f393511646d14c250f0db9ce541ad6dde1b83b32/files/icon.png">
+    <link rel="apple-touch-icon"
+        href="https://raw.githubusercontent.com/ivan-ska/converter/f393511646d14c250f0db9ce541ad6dde1b83b32/files/icon.png">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400&family=Doto:wght@500;600&display=swap"
@@ -32,7 +33,6 @@
             box-sizing: border-box;
             -webkit-font-smoothing: antialiased;
             -moz-osx-font-smoothing: grayscale;
-            /* Убираем синее выделение при клике на мобилках */
             -webkit-tap-highlight-color: transparent;
         }
 
@@ -42,17 +42,17 @@
             margin: 0;
             display: flex;
             justify-content: center;
-            align-items: center; /* Центр для десктопа */
+            align-items: center;
             min-height: 100vh;
-            min-height: 100dvh; /* Динамическая высота для мобилок */
+            min-height: 100dvh;
             padding: 20px;
-            overflow: hidden; /* Убирает лишний скролл */
+            overflow: hidden;
         }
 
         @media (max-width: 600px) {
             body {
-                align-items: flex-start; /* На мобилке прижимаем выше */
-                padding-top: 10dvh; /* Делаем отступ сверху 10% от высоты экрана */
+                align-items: flex-start;
+                padding-top: 10dvh;
             }
         }
 
