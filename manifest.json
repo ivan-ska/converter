@@ -1,0 +1,21 @@
+{
+  "name": "Currency Converter",
+  "short_name": "Currency",
+  "start_url": ".",
+  "display": "standalone",
+  "background_color": "#FFFFFF",
+  "theme_color": "#FFFFFF",
+  "orientation": "portrait",
+  "icons": [
+    {
+      "src": "https://raw.githubusercontent.com/ivan-ska/converter/f393511646d14c250f0db9ce541ad6dde1b83b32/files/icon.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "https://raw.githubusercontent.com/ivan-ska/converter/f393511646d14c250f0db9ce541ad6dde1b83b32/files/icon.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}
